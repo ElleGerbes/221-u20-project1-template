@@ -1,5 +1,10 @@
 body {
-	
+  background-image: url("/images/campus.png");
+  background-color: rgb(124, 208, 170);
+  background-repeat: no-repeat;
+  background-size: 850px 500px;
+  background-position: center;
+
 }
 
 #splash_title {
