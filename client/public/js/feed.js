@@ -1,4 +1,4 @@
-document.getElementById('portal_button').addEventListener('click', (event) => {
+/*document.getElementById('portal_button').addEventListener('click', (event) => {
     goToLocation('http://my.marist.edu');
 })
 
@@ -23,12 +23,12 @@ let feedItem3 = {
     imageUrl: '/images/fox.jpeg'
 }
 
-var currentStories = [feedItem1, feedItem2, feedItem3]
+var currentStories = [feedItem1, feedItem2, feedItem3] 
 
 window.addEventListener("load", () => {
     for(var i=0; i < currentStories.length; i++){
         displayFeed(currentStories[i]);
-    }});
+    }});*/
 
 function displayFeed(currentStories){
     let feed =  document.getElementById('newsfeed');
@@ -39,4 +39,22 @@ function displayFeed(currentStories){
 }
 
 
+function getCurrentFeed(){
+    fetch("./api/feedItems").then(function(response){
+        if (response.status !== 200) {
+            console.log('problem with ajax call..' + response.status + 'msg:' + response.value);
+            return;
+        }
+        response.json().then(function(data){
+                var feedItemHtml = '<ol>';
+            for(i in data) {
+                displayFeed(data[i]);
+                //feedItemHtml += "<li id ='+ data[i].id +'>" + data[i].Title + "</li>";
+            }
+                    //feedItemHtml += "</ol>";
+                    //document.getElementById('newsfeed').innerHTML = feedItemHtml;
+        });
+    });
+}
 
+getCurrentFeed();
